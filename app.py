@@ -50,6 +50,15 @@ st.markdown("""
         border-bottom-color: #ffffff !important;
     }
     
+    /* Estilo de bloques de codigo o texto destacado */
+    code {
+        color: #ffffff !important;
+        background-color: #1a1a1a !important;
+        border: 1px solid #2a2a2a !important;
+        border-radius: 3px !important;
+        padding: 0.2rem 0.4rem !important;
+    }
+    
     /* Ocultar elementos nativos de la interfaz de Streamlit */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
@@ -63,27 +72,27 @@ conocimiento = {
         "Glosario": [
             {
                 "termino": "Dato",
-                "definicion": "Un hecho aislado, una unidad mínima de información cuantitativa o cualitativa que puede ser registrada, medida o contada sin un contexto previo (ejemplo: un número de calzado, un registro de temperatura)."
+                "definicion": "Cualquier informacion que podemos registrar, medir o contar[span_1](start_span)[span_1](end_span). Son la base de todo analisis y se expresan con numeros o palabras[span_2](start_span)[span_2](end_span)."
             },
             {
-                "termino": "Análisis de Datos",
-                "definicion": "El proceso sistemático de examinar, limpiar, transformar y modelar datos con el objetivo de descubrir patrones, tendencias y relaciones que permitan extraer conclusiones útiles."
+                "termino": "Analisis de Datos",
+                "definicion": "El proceso sistematico de limpiar, transformar y modelar datos para descubrir patrones que apoyen la toma de decisiones estrategicas[span_3](start_span)[span_3](end_span)."
             },
             {
-                "termino": "Información",
-                "definicion": "El resultado de procesar, organizar e interpretar un conjunto de datos dentro de un contexto específico, dándoles un significado que reduce la incertidumbre."
+                "termino": "Informacion",
+                "definicion": "El resultado de procesar, organizar e interpretar un conjunto de datos dentro de un contexto especifico, dandoles un significado que reduce la incertidumbre[span_4](start_span)[span_4](end_span)."
             }
         ],
         "Proceso": """
-        El flujo de procesamiento profesional de la información se compone de cinco etapas críticas:
+        El flujo de procesamiento profesional de la informacion se compone de cinco etapas criticas[span_5](start_span)[span_5](end_span):
         
-        1. **Captura:** Recolección de variables desde fuentes crudas.
-        2. **Limpieza:** Tratamiento de datos nulos, duplicados o erróneos. Esta fase técnica consume aproximadamente el 80% del tiempo de un proyecto de datos.
-        3. **Exploración:** Identificación preliminar de sesgos, distribuciones y correlaciones mediante estadística descriptiva.
-        4. **Modelado:** Aplicación de algoritmos matemáticos y métricas de evaluación.
-        5. **Historia:** Visualización avanzada y comunicación técnica de los hallazgos.
+        1. **Captura:** Recoleccion desde fuentes crudas[span_6](start_span)[span_6](end_span).
+        2. **Limpieza:** Tratamiento de nulos y duplicados[span_7](start_span)[span_7](end_span). Esta fase tecnica consume aproximadamente el 80% del trabajo de un analista profesional[span_8](start_span)[span_8](end_span).
+        3. **Exploracion:** Identificacion de tendencias iniciales[span_9](start_span)[span_9](end_span).
+        4. **Modelado:** Aplicacion de algoritmos y metricas[span_10](start_span)[span_10](end_span).
+        5. **Historia:** Visualizacion y comunicacion de resultados[span_11](start_span)[span_11](end_span).
         
-        *Principio rector:* Garbage In, Garbage Out. Si alimentamos un sistema con datos basura, las decisiones y los resultados serán basura.
+        *Principio rector:* Garbage in, Garbage out[span_12](start_span)[span_12](end_span). Sin datos precisos, cualquier analisis llevara a decisiones erroneas[span_13](start_span)[span_13](end_span).
         """,
         "Codigo_Pandas": """import pandas as pd
 import numpy as np
@@ -102,79 +111,91 @@ df = pd.DataFrame(datos_crudos)
 # 2. LIMPIEZA DE DATOS (El "Trabajo Sucio")
 # ==========================================
 
-# A. Eliminar filas duplicadas (El registro de 'Ana' está repetido exactamente igual)
+# A. Eliminar filas duplicadas (El registro de 'Ana' esta repetido exactamente igual)
 df_limpio = df.drop_duplicates()
 
 # B. Tratar valores nulos (NaN - Not a Number)
-# Rellenar nombres faltantes con una etiqueta estándar
+# Rellenar nombres faltantes con una etiqueta estandar
 df_limpio['Alumno'] = df_limpio['Alumno'].fillna('Desconocido')
 
-# Rellenar edades faltantes con el promedio matemático del resto de la clase
+# Rellenar edades faltantes con el promedio matematico del resto de la clase
 promedio_edad = df_limpio['Edad'].mean()
 df_limpio['Edad'] = df_limpio['Edad'].fillna(promedio_edad)
 
 # Rellenar horas de celular faltantes con 0
 df_limpio['Horas_Celular'] = df_limpio['Horas_Celular'].fillna(0)
 
-# El dataset ahora está listo para la fase de Exploración y Modelado
+# El dataset ahora esta listo para la fase de Exploracion y Modelado
 """
     },
     "Modulo 2: Analitica Estructurada": {
         "Escalera": [
             {
-                "nivel": "Análisis Descriptivo",
-                "pregunta": "¿Qué pasó?",
-                "detalle": "Enfocado exclusivamente en el examen del pasado mediante el uso de reportes históricos y tabulados estáticos. Representa la base del valor analítico."
+                "nivel": "Analisis Descriptivo",
+                "pregunta": "¿Qué paso?",
+                "detalle": "Enfocado en el pasado mediante reportes historicos[span_14](start_span)[span_14](end_span)."
             },
             {
-                "nivel": "Análisis de Diagnóstico",
-                "pregunta": "¿Por qué pasó?",
-                "detalle": "Evaluación orientada a descubrir causas raíz, dependencias y correlaciones estadísticas entre las variables del negocio."
+                "nivel": "Analisis de Diagnostico",
+                "pregunta": "¿Por que paso?",
+                "detalle": "Buscando causas raiz y correlaciones[span_15](start_span)[span_15](end_span)."
             },
             {
-                "nivel": "Análisis Predictivo",
-                "pregunta": "¿Qué pasará?",
-                "detalle": "Construcción de proyecciones futuras fundamentadas en modelos estadísticos avanzados y algoritmos de Machine Learning."
+                "nivel": "Analisis Predictivo",
+                "pregunta": "¿Qué pasara?",
+                "detalle": "Modelos estadisticos y Machine Learning[span_16](start_span)[span_16](end_span)."
             },
             {
-                "nivel": "Análisis Prescriptivo",
-                "pregunta": "¿Qué debemos hacer?",
-                "detalle": "Automatización de la toma de decisiones complejas, sugiriendo o ejecutando acciones óptimas basadas en optimización matemática."
+                "nivel": "Analisis Prescriptivo",
+                "pregunta": "¿Qué hacer?",
+                "detalle": "Recomendaciones automaticas de accion[span_17](start_span)[span_17](end_span)."
             }
         ],
         "Roles": [
             {
                 "rol": "Data Analyst",
-                "enfoque": "Interpretación del negocio, generación de tableros y comunicación de métricas históricas.",
-                "herramientas": "SQL, Excel, herramientas de Business Intelligence como Power BI o Tableau."
+                "enfoque": "Interpretacion de negocio y visualizacion[span_18](start_span)[span_18](end_span).",
+                "herramientas": "SQL, Excel, Power BI[span_19](start_span)[span_19](end_span)."
             },
             {
                 "rol": "Data Scientist",
-                "enfoque": "Diseño de modelos predictivos, experimentación, análisis estadístico avanzado e investigación matemática.",
-                "herramientas": "Python, R, entornos Jupyter, frameworks de Machine Learning."
+                "enfoque": "Modelos predictivos y experimentacion[span_20](start_span)[span_20](end_span).",
+                "herramientas": "Python, R, Machine Learning[span_21](start_span)[span_21](end_span)."
             },
             {
                 "rol": "Data Engineer",
-                "enfoque": "Desarrollo de infraestructura, arquitectura de almacenamiento masivo y construcción de tuberías ETL.",
-                "herramientas": "Spark, entornos Cloud, gestión de bases de datos relacionales y no relacionales."
+                "enfoque": "Infraestructura, tuberias y ETL[span_22](start_span)[span_22](end_span).",
+                "herramientas": "Spark, Cloud, Hadoop[span_23](start_span)[span_23](end_span)."
             }
         ]
     },
     "Modulo 3: Inteligencia Artificial": {
-        "Paradigma": """
-        El paso de la ingeniería de software tradicional al desarrollo de sistemas inteligentes implica un cambio estructural en la lógica de computación:
+        "Glosario_IA": [
+            {
+                "termino": "Inteligencia Artificial (IA)",
+                "definicion": "Concepto global que representa la capacidad de las maquinas de realizar tareas 'inteligentes[span_24](start_span)'[span_24](end_span)."
+            },
+            {
+                "termino": "Machine Learning",
+                "definicion": "Subdominio de la IA que proporciona a los sistemas la capacidad de aprender y mejorar automaticamente a partir de la experiencia sin ser explicitamente programados para ellos[span_25](start_span)[span_25](end_span)."
+            },
+            {
+                "termino": "Deep Learning",
+                "definicion": "Rama que utiliza redes neuronales, buscando emular el comportamiento de las neuronas de los seres humanos y sus interconexiones[span_26](start_span)[span_26](end_span)."
+            }
+        ],
+        "ML_vs_DL": """
+        ### La Diferencia en la Extraccion de Caracteristicas
+        El rendimiento de los algoritmos depende en gran medida de la presentacion de los datos[span_27](start_span)[span_27](end_span). La diferencia tecnica central entre ambos paradigmas es:
         
-        * **Sistemas Basados en Reglas (Programación Tradicional):** Los desarrolladores definen manualmente la lógica y las instrucciones condicionales del código. Al ingresar datos de entrada, el sistema ejecuta las reglas preestablecidas y computa una salida.
-        * **Machine Learning (Aprendizaje Automático):** Modifica el flujo operativo. Se proveen los datos de entrada junto con las respuestas o etiquetas deseadas. El algoritmo procesa esta información para descubrir de forma autónoma los patrones subyacentes, generando sus propias reglas de decisión.
+        * **Tecnicas clasicas de Machine Learning:** Requieren un diseno manual de caracteristicas[span_28](start_span)[span_28](end_span). Un humano procesa y selecciona las variables, y el modelo toma una decision a partir de esas caracteristicas[span_29](start_span)[span_29](end_span).
+        * **Tecnicas de Deep Learning:** Realizan un diseno automatico de caracteristicas simples en sus capas iniciales, procesando luego capas adicionales con caracteristicas abstractas, para finalmente tomar una decision a partir de las caracteristicas[span_30](start_span)[span_30](end_span).
         """,
-        "Deep Learning": """
-        ### Redes Neuronales Artificiales Profundas
-        Subcampo del Machine Learning especializado en el diseño automático de características complejas a través del uso de múltiples capas ocultas de procesamiento. Es la tecnología detrás del reconocimiento de imágenes y el procesamiento de lenguaje avanzado.
+        "Volumen": """
+        ### El Requerimiento del Volumen de Datos
+        Para que los algoritmos de Deep Learning funcionen adecuadamente se requiere un conjunto de datos grandes[span_31](start_span)[span_31](end_span). 
         
-        ### El Requerimiento Crítico del Volumen
-        A diferencia de los modelos analíticos clásicos, el rendimiento de una red neuronal profunda depende de manera crítica de la disponibilidad de conjuntos de datos masivos. 
-        
-        Sin un gran volumen de datos de alta calidad para entrenamiento, el modelo es propenso al estancamiento y pierde capacidad de generalización ante nuevos escenarios. El éxito de estos sistemas radica en la iteración constante y el volumen de la información procesada.
+        Mientras que los algoritmos de Machine Learning tradicional suelen estancarse en rendimiento al alcanzar un limite de datos procesados, el Deep Learning (como las redes neuronales grandes) continua mejorando su performance a medida que aumenta la cantidad de informacion que recibe[span_32](start_span)[span_32](end_span).
         """
     }
 }
@@ -185,17 +206,16 @@ st.markdown("Material de consulta y referencia conceptual.")
 st.markdown("---")
 
 # Seccion de navegacion en barra lateral
-st.sidebar.title("Índice de Temas")
+st.sidebar.title("Indice de Temas")
 modulo_seleccionado = st.sidebar.radio("Seleccionar Unidad:", list(conocimiento.keys()))
 st.sidebar.markdown("---")
-st.sidebar.caption("Espacio de documentación estática para el análisis diagnóstico.")
+st.sidebar.caption("Espacio de documentacion estatica para el analisis diagnostico.")
 
 # Renderizado logico de contenidos segun seleccion
 if modulo_seleccionado == "Modulo 1: Fundamentos de Datos":
-    st.header("Módulo 1: Fundamentos de Datos")
+    st.header("Modulo 1: Fundamentos de Datos")
     
-    # Agregamos una tercera pestaña para el código
-    tab1, tab2, tab3 = st.tabs(["Glosario Base", "Ciclo de Vida del Dato", "Práctica en Python"])
+    tab1, tab2, tab3 = st.tabs(["Glosario Base", "Ciclo de Vida del Dato", "Practica en Python"])
     
     with tab1:
         st.markdown("### Conceptos Elementales")
@@ -204,20 +224,20 @@ if modulo_seleccionado == "Modulo 1: Fundamentos de Datos":
                 st.write(item["definicion"])
                 
     with tab2:
-        st.markdown("### El Proceso de la Información")
+        st.markdown("### El Proceso de la Informacion")
         st.markdown(conocimiento["Modulo 1: Fundamentos de Datos"]["Proceso"])
         
     with tab3:
         st.markdown("### Ejemplo Real: Limpiando Datos con Pandas")
-        st.markdown("Este bloque de código muestra cómo se ejecuta la fase de limpieza en un entorno profesional utilizando la librería `pandas` en Python. El objetivo es tratar los valores nulos (vacíos) y eliminar registros duplicados.")
+        st.markdown("Este bloque de codigo muestra como se ejecuta la fase de limpieza en un entorno profesional utilizando la libreria `pandas` en Python. El objetivo es tratar los valores nulos (vacios) y eliminar registros duplicados.")
         st.code(conocimiento["Modulo 1: Fundamentos de Datos"]["Codigo_Pandas"], language='python')
 
 elif modulo_seleccionado == "Modulo 2: Analitica Estructurada":
-    st.header("Módulo 2: Analítica Estructurada")
-    tab1, tab2 = st.tabs(["Tipos de Análisis", "Ecosistema Profesional"])
+    st.header("Modulo 2: Analitica Estructurada")
+    tab1, tab2 = st.tabs(["Tipos de Analisis", "Ecosistema Profesional"])
     
     with tab1:
-        st.markdown("### Evolución del Análisis de Datos")
+        st.markdown("### Evolucion del Analisis de Datos")
         for nivel in conocimiento["Modulo 2: Analitica Estructurada"]["Escalera"]:
             st.subheader(nivel["nivel"])
             st.markdown(f"*Interrogante central:* {nivel['pregunta']}")
@@ -232,14 +252,20 @@ elif modulo_seleccionado == "Modulo 2: Analitica Estructurada":
                 st.markdown(f"**Herramientas clave:** `{perfil['herramientas']}`")
 
 elif modulo_seleccionado == "Modulo 3: Inteligencia Artificial":
-    st.header("Módulo 3: Inteligencia Artificial")
-    tab1, tab2 = st.tabs(["Cambio de Paradigma", "Deep Learning"])
+    st.header("Modulo 3: Inteligencia Artificial")
+    tab1, tab2, tab3 = st.tabs(["Conceptos Elementales", "ML vs. Deep Learning", "El Factor del Volumen"])
     
     with tab1:
-        st.markdown("### Reglas vs. Aprendizaje Autómata")
-        st.markdown(conocimiento["Modulo 3: Inteligencia Artificial"]["Paradigma"])
-        
+        st.markdown("### Glosario de Inteligencia Artificial")
+        for item in conocimiento["Modulo 3: Inteligencia Artificial"]["Glosario_IA"]:
+            with st.expander(item["termino"]):
+                st.write(item["definicion"])
+                
     with tab2:
-        st.markdown("### Redes Neuronales y Datos Masivos")
-        st.markdown(conocimiento["Modulo 3: Inteligencia Artificial"]["Deep Learning"])
+        st.markdown("### Diferencias Estructurales")
+        st.markdown(conocimiento["Modulo 3: Inteligencia Artificial"]["ML_vs_DL"])
+        
+    with tab3:
+        st.markdown("### Rendimiento y Datos")
+        st.markdown(conocimiento["Modulo 3: Inteligencia Artificial"]["Volumen"])
         
