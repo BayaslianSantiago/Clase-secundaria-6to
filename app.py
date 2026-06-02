@@ -1,178 +1,154 @@
 import streamlit as st
 
-# Configuración de la plataforma con disposición expandida
+# Configuracion de la pagina con panel expandido por defecto
 st.set_page_config(
     page_title="Centro de Recursos: Ciencia de Datos e IA", 
     layout="wide", 
     initial_sidebar_state="expanded"
 )
 
-# Estructura de la base de conocimientos (Glosario unificado)
-conocimiento = {
-    "Módulo 1: Fundamentos de Datos": {
-        "Conceptos Clave": [
-            {
-                "termino": "Dato",
-                "definicion": "Un hecho aislado, una unidad mínima de información cuantitativa o cualitativa que puede ser registrada, medida o contada sin un contexto previo (ejemplo: un número de calzado, un registro de temperatura)."
-            },
-            {
-                "termino": "Análisis de Datos",
-                "definicion": "El proceso sistemático de examinar, limpiar, transformar y modelar datos con el objetivo de descubrir patrones, tendencias y relaciones que permitan extraer conclusiones útiles."
-            },
-            {
-                "termino": "Información",
-                "definicion": "El resultado de procesar, organizar e interpretar un conjunto de datos dentro de un contexto específico, dándoles un significado que reduce la incertidumbre."
-            }
-        ],
-        "Ciclo de Vida": """
-        El flujo de procesamiento profesional de la información se compone de cinco etapas críticas:
-        1. **Captura:** Recolección de variables desde fuentes crudas.
-        2. **Limpieza:** Tratamiento de datos nulos, duplicados o erróneos. Esta fase técnica consume aproximadamente el 80% del tiempo del proyecto.
-        3. **Exploración:** Identificación preliminar de sesgos, distribuciones y correlaciones mediante estadística descriptiva.
-        4. **Modelado:** Aplicación de algoritmos matemáticos y métricas de evaluación.
-        5. **Historia:** Visualización avanzada y comunicación técnica de los hallazgos.
-        """
-    },
-    "Módulo 2: Analítica Estructurada": {
-        "La Escalera de Valor": [
-            {
-                "nivel": "Análisis Descriptivo",
-                "pregunta": "¿Qué pasó?",
-                "detalle": "Enfocado exclusivamente en el examen del pasado mediante el uso de reportes históricos y tabulados estáticos."
-            },
-            {
-                "nivel": "Análisis de Diagnóstico",
-                "pregunta": "¿Por qué pasó?",
-                "detalle": "Evaluación orientada a descubrir causas raíz, dependencias y correlaciones estadísticas entre las variables."
-            },
-            {
-                "nivel": "Análisis Predictivo",
-                "pregunta": "¿Qué pasará?",
-                "detalle": "Construcción de proyecciones futuras fundamentadas en modelos estadísticos avanzados y algoritmos de Machine Learning."
-            },
-            {
-                "nivel": "Análisis Prescriptivo",
-                "pregunta": "¿Qué debemos hacer?",
-                "detalle": "Automatización de la toma de decisiones complejas, sugiriendo o ejecutando acciones óptimas basadas en optimización matemática."
-            }
-        ],
-        "Roles de la Industria": [
-            {
-                "rol": "Data Analyst",
-                "enfoque": "Interpretación del negocio, generación de tableros y comunicación visual.",
-                "herramientas": "SQL, Excel, herramientas de Business Intelligence."
-            },
-            {
-                "rol": "Data Scientist",
-                "enfoque": "Diseño de modelos predictivos, experimentación e investigación matemática.",
-                "herramientas": "Python, R, frameworks de Machine Learning."
-            },
-            {
-                "rol": "Data Engineer",
-                "enfoque": "Desarrollo de infraestructura, arquitectura de almacenamiento y tuberías ETL (Extracción, Transformación y Carga).",
-                "herramientas": "Spark, entornos Cloud, bases de datos masivas."
-            }
-        ]
-    },
-    "Módulo 3: Inteligencia Artificial": {
-        "Cambio de Paradigma": """
-        * **Sistemas Basados en Reglas (Programación Tradicional):** Los desarrolladores definen manualmente la lógica y las instrucciones condicionales del código. Al ingresar datos de entrada, el sistema ejecuta las reglas preestablecidas y computa una salida.
-        * **Machine Learning:** Modifica el flujo operativo. Se proveen los datos de entrada junto con las respuestas o etiquetas deseadas. El algoritmo procesa esta información para descubrir de forma autónoma los patrones subyacentes, generando sus propias reglas de decisión.
-        """,
-        "Deep Learning y Volumen": """
-        ### Redes Neuronales Artificiales Profundas
-        Subcampo del Machine Learning especializado en el diseño automático de características complejas a través del uso de múltiples capas ocultas de procesamiento.
-        
-        * **Requerimiento Crítico:** A diferencia de los modelos analíticos clásicos, el rendimiento de una red neuronal profunda depende de manera crítica de la disponibilidad de conjuntos de datos masivos. Sin un gran volumen de datos de alta calidad, el modelo es propenso al estancamiento y pierde capacidad de generalización.
-        """
-    }
-}
-
-# Estilos CSS inyectados para una estética limpia, enfocada en la lectura
+# Inyeccion de CSS para forzar un tema oscuro minimalista y consistente
 st.markdown("""
     <style>
+    /* Fondo principal y color de texto */
+    .stApp {
+        background-color: #0a0a0a;
+        color: #e5e5e5;
+    }
+    
+    /* Barra lateral */
+    section[data-testid="stSidebar"] {
+        background-color: #111111;
+        border-right: 1px solid #222222;
+    }
+    
+    /* Titulos y Encabezados */
+    h1, h2, h3, h4 {
+        color: #ffffff !important;
+        font-weight: 600;
+    }
+    
+    /* Separadores */
+    hr {
+        border-color: #222222 !important;
+    }
+    
+    /* Estilo para los bloques desplegables (Expanders) */
+    div[data-testid="stExpander"] {
+        background-color: #141414 !important;
+        border: 1px solid #262626 !important;
+        border-radius: 4px !important;
+    }
+    
+    /* Modificacion de pestanas (Tabs) para integracion en tema oscuro */
+    button[data-baseweb="tab"] {
+        color: #888888 !important;
+        background-color: transparent !important;
+    }
+    button[data-baseweb="tab"][aria-selected="true"] {
+        color: #ffffff !important;
+        border-bottom-color: #ffffff !important;
+    }
+    
+    /* Estilo de bloques de codigo o texto destacado */
+    code {
+        color: #ffffff !important;
+        background-color: #1a1a1a !important;
+        border: 1px solid #2a2a2a !important;
+        border-radius: 3px !important;
+        padding: 0.2rem 0.4rem !important;
+    }
+    
+    /* Ocultar elementos nativos de la interfaz de Streamlit */
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    .css-12w0qpk {padding-top: 2rem;}
-    h1 {color: #1E1E1E; font-weight: 700;}
-    h2 {color: #2E2E2E; font-weight: 600; margin-top: 1.5rem;}
-    h3 {color: #424242; font-weight: 500;}
-    div[data-testid="stExpander"] {background-color: #F8F9FA; border-radius: 4px;}
     </style>
     """, unsafe_allow_html=True)
 
-# Título principal del sitio
-st.title("Repositorio Teórico: Ciencia de Datos e Inteligencia Artificial")
-st.markdown("Material de consulta y referencia para los alumnos de 6to A.")
-st.markdown("---")
-
-# Navegación estructural izquierda
-st.sidebar.title("Índice de Temas")
-modulo_seleccionado = st.sidebar.radio("Seleccionar Unidad:", list(conocimiento.keys()))
-
-st.sidebar.markdown("---")
-st.sidebar.caption("Este espacio contiene las definiciones oficiales vistas durante el ciclo lectivo.")
-
-# Renderizado dinámico del contenido según el módulo seleccionado
-if modulo_seleccionado == "Módulo 1: Fundamentos de Datos":
-    st.header("Módulo 1: Fundamentos de Datos")
-    
-    tab1, tab2 = st.tabs(["Glosario Base", "Ciclo de Vida del Dato"])
-    
-    with tab1:
-        st.markdown("### Conceptos Elementales")
-        for item in conocimiento["Módulo 1: Fundamentos de Datos"]["Conceptos Clave"]:
-            with st.expander(f"📌 {item['termino']}"):
-                st.write(item["definicion"])
-                
-    with tab2:
-        st.markdown("### El Proceso de la Información")
-        st.markdown(conocimiento["Módulo 1: Fundamentos de Datos"]["Ciclo de Vida"])
-
-elif modulo_seleccionado == "Módulo 2: Analítica Estructurada":
-    st.header("Módulo 2: Analítica Estructurada")
-    
-    tab1, tab2 = st.tabs(["Tipos de Análisis", "Ecosistema Profesional"])
-    
-    with tab1:
-        st.markdown("### Evolución del Análisis de Datos")
-        for nivel in conocimiento["Módulo 2: Analítica Estructurada"]["La Escalera de Valor"]:
-            st.subheader(nivel["nivel"])
-            st.markdown(f"**Interrogante central:** *{nivel['pregunta']}*")
-            st.write(nivel["detalle"])
-            st.markdown("---")
-            
-    with tab2:
-        st.markdown("### Perfiles Laborales del Sector")
-        for perfil in conocimiento["Módulo 2: Analítica Estructurada"]["Roles Bars"]:
-            # Pequeño ajuste dinámico para leer la lista interna
-            pass
+# Base de datos de conocimiento estructurada sin elementos visuales distractores
+conocimiento = {
+    "Modulo 1: Fundamentos de Datos": {
+        "Glosario": [
+            {
+                "termino": "Dato",
+                "definicion": "Un hecho aislado, una unidad minima de informacion cuantitativa o cualitativa que puede ser registrada, medida o contada sin un contexto previo (ejemplo: un numero de calzado, un registro de temperatura)."
+            },
+            {
+                "termino": "Analisis de Datos",
+                "definicion": "El proceso sistematico de examinar, limpiar, transformar y modelar datos con el objetivo de descubrir patrones, tendencias y relaciones que permitan extraer conclusiones utiles."
+            },
+            {
+                "termino": "Informacion",
+                "definicion": "El resultado de procesar, organizar e interpretar un conjunto de datos dentro de un contexto especifico, dandoles un significado que reduce la incertidumbre."
+            }
+        ],
+        "Proceso": """
+        El flujo de procesamiento profesional de la informacion se compone de cinco etapas criticas:
         
-        # Renderizado de perfiles
-        for perfil in conocimiento["Módulo 2: Analítica Estructurada"]["Roles Enfoque" if "Roles Enfoque" in conocimiento["Módulo 2: Analítica Estructurada"] else "Roles Inciertos"]:
-            pass
+        1. **Captura:** Recoleccion de variables desde fuentes crudas.
+        2. **Limpieza:** Tratamiento de datos nulos, duplicados o erroneos. Esta fase tecnica consume aproximadamente el 80% del tiempo de un proyecto de datos.
+        3. **Exploracion:** Identificacion preliminar de sesgos, distribuciones y correlaciones mediante estadistica descriptiva.
+        4. **Modelado:** Aplicacion de algoritmos matematicos y metricas de evaluacion.
+        5. **Historia:** Visualizacion avanzada y comunicacion tecnica de los hallazgos.
         
-        # Corrección directa de la lectura para evitar fallos de clave
-        for perfil in [
-            {"rol": "Data Analyst", "enfoque": "Interpretación del negocio, generación de tableros y comunicación visual.", "herramientas": "SQL, Excel, herramientas de Business Intelligence."},
-            {"rol": "Data Scientist", "enfoque": "Diseño de modelos predictivos, experimentación e investigación matemática.", "herramientas": "Python, R, frameworks de Machine Learning."},
-            {"rol": "Data Engineer", "enfoque": "Desarrollo de infraestructura, arquitectura de almacenamiento y tuberías ETL.", "herramientas": "Spark, entornos Cloud, bases de datos masivas."}
-        ]:
-            with st.expander(f"💼 {perfil['rol']}"):
-                st.markdown(f"**Enfoque principal:** {perfil['enfoque']}")
-                st.markdown(f"**Herramientas clave:** `{perfil['herramientas']}`")
-
-elif modulo_seleccionado == "Módulo 3: Inteligencia Artificial":
-    st.header("Módulo 3: Inteligencia Artificial")
-    
-    tab1, tab2 = st.tabs(["Cambio de Paradigma", "Deep Learning"])
-    
-    with tab1:
-        st.markdown("### Reglas vs. Aprendizaje Automático")
-        st.markdown(conocimiento["Módulo 3: Inteligencia Artificial"]["Cambio de Paradigma"])
+        *Principio rector:* Garbage In, Garbage Out. Si alimentamos un sistema con datos basura, las decisiones y los resultados seran basura.
+        """
+    },
+    "Modulo 2: Analitica Estructurada": {
+        "Escalera": [
+            {
+                "nivel": "Analisis Descriptivo",
+                "pregunta": "¿Qué paso?",
+                "detalle": "Enfocado exclusivamente en el examen del pasado mediante el uso de reportes historicos y tabulados estaticos. Representa la base del valor analitico."
+            },
+            {
+                "nivel": "Analisis de Diagnostico",
+                "pregunta": "¿Por que paso?",
+                "detalle": "Evaluacion orientada a descubrir causas raiz, dependencias y correlaciones estadisticas entre las variables del negocio."
+            },
+            {
+                "nivel": "Analisis Predictivo",
+                "pregunta": "¿Qué pasara?",
+                "detalle": "Construccion de proyecciones futuras fundamentadas en modelos estadisticos avanzados y algoritmos de Machine Learning."
+            },
+            {
+                "nivel": "Analisis Prescriptivo",
+                "pregunta": "¿Qué debemos hacer?",
+                "detalle": "Automatizacion de la toma de decisiones complejas, sugiriendo o ejecutando acciones optimas basadas en optimizacion matematica."
+            }
+        ],
+        "Roles": [
+            {
+                "rol": "Data Analyst",
+                "enfoque": "Interpretacion del negocio, generacion de tableros y comunicacion de metricas historicas.",
+                "herramientas": "SQL, Excel, herramientas de Business Intelligence como Power BI o Tableau."
+            },
+            {
+                "rol": "Data Scientist",
+                "enfoque": "Diseno de modelos predictivos, experimentacion, analisis estadistico avanzado e investigacion matematica.",
+                "herramientas": "Python, R, entornos Jupyter, frameworks de Machine Learning."
+            },
+            {
+                "rol": "Data Engineer",
+                "enfoque": "Desarrollo de infraestructura, arquitectura de almacenamiento masivo y construccion de tuberias ETL.",
+                "herramientas": "Spark, entornos Cloud, gestion de bases de datos relacionales y no relacionales."
+            }
+        ]
+    },
+    "Modulo 3: Inteligencia Artificial": {
+        "Paradigma": """
+        El paso de la ingenieria de software tradicional al desarrollo de sistemas inteligentes implica un cambio estructural en la logica de computacion:
         
-    with tab2:
-        st.markdown("### Redes Neuronales y Datos Masivos")
-        st.markdown(conocimiento["Módulo 3: Inteligencia Artificial"]["Deep Learning y Volumen"])
+        * **Sistemas Basados en Reglas (Programacion Tradicional):** Los desarrolladores definen manualmente la logica y las instrucciones condicionales del codigo. Al ingresar datos de entrada, el sistema ejecuta las reglas preestablecidas y computa una salida.
+        * **Machine Learning (Aprendizaje Automatico):** Modifica el flujo operativo. Se proveen los datos de entrada junto con las respuestas o etiquetas deseadas. El algoritmo procesa esta informacion para descubrir de forma autonoma los patrones subyacentes, generando sus propias reglas de decision.
+        """,
+        "Deep Learning": """
+        ### Redes Neuronales Artificiales Profundas
+        Subcampo del Machine Learning especializado en el diseno automatico de caracteristicas complejas a traves del uso de multiples capas ocultas de procesamiento. Es la tecnologia detras del reconocimiento de imagenes y el procesamiento de lenguaje avanzado.
+        
+        ### El Requerimiento Critico del Volumen
+        A diferencia de los modelos analiticos clasicos, el rendimiento de una red neuronal profunda depende de manera critica de la disponibilidad de conjuntos de datos masivos. 
+        
+        Sin un gran volumen de datos de alta calidad para entrenamiento, el modelo es propenso al estancamiento y pierde capacidad de generalizacion ante nuevos escenarios. El exito de estos sistemas radica en la iteracion constante
         
